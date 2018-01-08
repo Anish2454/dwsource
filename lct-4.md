@@ -1,3 +1,78 @@
+## Friday, 1/5 Stop. Collaborate, and listen by Mansour Elsharawy
+
+**Tech News:** [Spectre and Meltdown Security Bugs Discovered Simultaneously in our Processor Chips](https://www.wired.com/story/meltdown-spectre-bug-collision-intel-chip-flaw-discovery/)
+
+_Finally, how to do networking in C!_
+
+#### Extra Libraries That You Haven't Seen Before But Will Need Now
+```
+<sys/socket.h>
+<netdb.h>
+```
+
+### socket()
+* Creates a socket!
+* Returns a socket descriptor (an `int` that works like a file descriptor)
+* Syntax: `socket(DOMAIN,TYPE,PROTOCOL)`
+* DOMAIN is the type of address to be used, use `AF_INET` or `AF_INET6` for IPv4 and IPv6 addresses, respectively.
+* TYPE is the type of socket you plan to use, use `SOCK_STREAM` for stream socket and `SOCK_DGRAM` for datagram socket.
+* PROTOCOL is the combination of domain and type - If set to 0, the OS will set it to the correct type (TCP or UDP) (Best to just set it to 0)
+
+**Example:**
+```c
+int sd = socket(AF_INET,SOCK_STREAM,0);
+```
+
+### struct addrinfo
+
+The system library uses `struct addrinfo` to represent network address information (like the IP address, port, and protocol)
+Here are some of the fields we will need to use and the values we can set them to:
+
+#### .ai_family
+* `AF_INET` for an IPv4 address
+* `AF_INET6` for an IPv6 address
+* `AF_UNSPEC` for an unspecified type of address
+
+#### .ai_socktype
+* `SOCK_STREAM` as specified above
+* `SOCK_DGRAM` as specified above
+
+#### .ai_flags
+* `AI_PASSIVE` Automatically sets to any incoming IP address (good for servers!)
+
+#### .ai_flags
+* A pointer to a `struct sockaddr,` which contains the IP address
+
+#### .ai_flags
+* Size of the IP address
+
+
+### getaddrinfo()
+* This method is used to lookup information about the desired network address and get one or more matching `struct addrinfo` entries.
+* Syntax: `getaddrinfo(NODE,SERVICE,HINTS,RESULTS)`
+* NODE is a string containing IP address or hostname to lookup - If set to `NULL`, it will use the loopback address.
+* SERVICE is a string with a port number or service name (if the service is in `/etc/services`) (And yes, the port number is in a string.)
+* HINTS is a pointer to a `struct addrinfo` used to provide the settings for the lookup.
+* RESULTS is a pointer toa `struct addrinfo` that will be a linked list containing entries for each matching address (memory allocation handled automagically!).
+
+### bind() (used by servers only)
+* Binds a socket to an address and port
+* Returns 0 on success, -1 on failure (and sets our good old friend errno)
+* Syntax: `bind(SOCKET_DESCRIPTOR,ADDRESS,ADDRESS_LENGTH)`
+* `SOCKET_DESCRIPTOR` is the return value of `socket()`
+* The `ADDRESS` and `ADDRESS_LENGTH` fields can be retrieved from the results of `getaddrinfo().`
+
+### listen() (used by servers only)
+* Set a socket to passively wait for a connection.
+* Necessary for stream sockets
+* DOES NOT BLOCK! THIS IS NOT READ()!
+* Syntax: `listen(SOCKET_DESCRIPTOR,BACKLOG)`
+* `BACKLOG` is the maximum number of connections that can be queued up at a time (may not do much depending on protocol)
+
+...And that's all folks! (For now)
+
+---
+
 ## Wednesday, 1/3 Socket to Me by Sonal Parab
 
 **Tech News:** [Amazon Patents Blended Reality Mirror for Virtual Dress-Up](https://www.geekwire.com/2018/amazon-patents-blended-reality-mirror-shows-wearing-virtual-clothes-virtual-locales/)
