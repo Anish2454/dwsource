@@ -43,7 +43,7 @@ Here are some of the fields we will need to use and the values we can set them t
 #### .ai_flags
 * A pointer to a `struct sockaddr,` which contains the IP address
 
-#### .ai_flags
+#### .ai_addrlen
 * Size of the IP address
 
 
