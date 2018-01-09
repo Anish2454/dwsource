@@ -1,3 +1,168 @@
+## Monday, 1/8 Stop, Collaborate, and Listen by Daria Shifrina
+**Tech news** [Physicists build muscle for shape-changing, cell-sized robots](https://www.sciencedaily.com/releases/2018/01/180103160115.htm)
+
+We continued learning about how to create sockets.
+
+* #### listen(server only) <sys/socket.h>
+  ```listen(socket_descriptor, backlog);```
+
+   * Socket descriptor: return value of socket
+   * Backlog: number of connections that can be queued up 
+	*Depending on the protocol this may not do much
+
+listen uses:
+* Set a socket to passively await a connection. 
+* Needed for stream sockets. 
+* Does not block.
+
+* #### accept (server only) <sys/socket.h>
+
+  ```accept (socket descriptor, address, address length);```
+
+	* Socket descriptor: the listening socket descriptor
+	* Address and address length intended for new socket
+	  *Pointers that will be modified by accept
+	  *Address: pointer to a struct sockaddr_storage that will contain information about the new socket after accept succeeds.
+	  *Address length
+	   *Pointer to a variable that will contain the size of the new socket address after accept succeeds
+
+accept uses:
+* Accept the next client in the queue of a socket in the listen state.
+* Used for stream sockets
+* Performs the server side of the 3 way handshake 
+* Creates a new socket for communicating with the client, the listening socket is not modified (like WKP)
+* Returns a descriptor to the new socket
+* Blocks until a connection attempt is made
+
+### Sample usage with listen and accept
+```C
+// create socket
+Int sd; 
+sd = socket(AD_INET, SOCK_STREAM, 0);
+//use getaddrinfo and bind 
+listen(sd, 10);
+int client_socket; 
+socklen_t sock_size;
+struct sockaddr_storage client_address; 
+client_socket = accept(sd,(struct sockaddr*)&client_address, &soc_size);
+```
+
+* #### connect (client only) <sys/socket.h> <sys/types.h>
+  ```connect (socket descriptor, address, address length);```
+
+	* Socket descriptor: descriptor for the socket
+	* Address: pointer to a struct sockaddr representing the address
+	* Address length: size of the address in bytes
+	* Address and address length can be retrieved from getaddrinfo() 
+
+
+connect uses:
+* Connect to a socket that is currently in the listening state
+* Used for stream sockets
+* Performs the client side of the three way handshake
+* Binds the socket to an address and port
+* Blocks until a connection is made or the attempt fails
+
+### Sample usage of connect
+```C
+// create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM,0 );
+struct addrinfo *hints, *results;
+//use getaddrinfo( not shown)
+connect(sd, results->ai_addr, results->ai_addrlen); 	
+```
+
+
+<hr>
+
+
+## Friday, 1/5 Stop, Collaborate, and Listen by Jeffrey Luo
+**Tech news** [65" Rollable TV Screen](https://www.theverge.com/2018/1/6/16859102/lg-display-rollable-oled-65-inch-ces-2018)
+
+In previous classes, we learned that in order to use a socket, we must:
+
+1. Create the socket
+2. Bind it to an IP address and port
+3. Listen and initiate a connection
+4. Send and receive data
+
+We were introduced to several method calls that can be used to accomplish some of these procedures.
+
+### Method calls
+
+* #### socket - <sys/socket.h>
+  ```socket( <domain>, <type>, <protocol>);```
+  
+  Creates a socket. Returns a socket descriptor (int that works like a file descriptor).
+  * domain: type of address (AF_INET or AF_INET6)
+  * type: SOCK_STREAM or SOCK_DGRAM
+  * protocol: combination of data and type settings. If set to 0, the OS will set to correct protocol (TCP or UDP)
+  * NOTE: system library calls use a *struct addrinfo* to represent network addresses
+
+* #### getaddrinfo - <sys/types.h> <sys/socket.h> <netdb.h>
+
+  ```getaddrinfo( <node>, <service>, <hints>, <results>);```
+
+  Lookup information about the desired network address and get one or more matching *struct addrinfo* entries.
+
+  * node: string containing an IP address or hostname to lookup. If NULL, uses local machine's IP address.
+  * service: string with a port number or service name (if in /etc/services)
+  * hints: pointer to a *struct addrinfo* used to provide settings for the lookup (type of address, etc.)
+  * results: pointer to a *struct addrinfo* that will be a linked list containing entries for each matching address. 
+  
+  getaddrinfo will allocate memory for these structs
+
+* #### bind - <sys/socket.h>
+
+  ```bind( <socket descriptor>, <address>, <address length>);```
+  
+  *Server only.* Binds the server to an address and port. Returns 0 on success, or 1 on failure. 
+  
+  * socket descriptor: return value of socket
+  * address: can be retrieved from getaddrinfo
+  * address length: size of the address in bytes
+
+
+### struct addrinfo
+
+These are the elements contained in addrinfo:
+
+* .ai_family
+  * AF_INET: IPv4
+  * AF_INET6: IPv6
+  * AF_UNSPEC: IPv4 or IPv6
+
+* .ai_socktype
+  * SOCK_STREAM
+  * SOCK_DGRAM
+
+* .ai_flags
+  * AI_PASSIVE: auto set to incoming IP addresses
+  * Many other flags exist, but may not be necessary for our purposes
+
+* .ai_addr
+  * Pointer to a *struct  sockaddr* containing the IP address
+
+* .ai_addrlen
+  * Size of the address in bytes
+
+### Sample usage
+```C
+struct addrinfo *hints, *results;
+hints = (struct addrinfo *)calloc(1, sizeof(struct addrinfo)); // note that you have to zero out struct addrinfo hints
+hints->ai_family = AF_INET;
+hints->ai_socktype = SOCK_STREAM; // TCP
+hints->ai_flags = AI_PASSIVE; // only needed on server
+getaddrinfo(NULL, "80", hints, &results); // server sets node to NULL. Note that you must pass fourth argument as a double pointer
+// getaddrinfo("149.89.150.100", "9845", hints, &results); // client
+// DO STUFF
+free(hints);
+freeaddrinfo(results);
+```
+
+<hr>
+
 ## Wednesday, 1/3 Socket To Me (continued) by Anish Shenoy
 **Tech News** [Major Vulnerability Discovered in Processors](https://techcrunch.com/2018/01/03/a-major-kernel-vulnerability-is-going-to-slow-down-all-intel-processors-2/)
 

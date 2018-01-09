@@ -1,3 +1,156 @@
+## Monday, 1/8 Stop. Collaborate, and listen by Henry Zheng
+
+**Tech News:** [Senate bill to reverse net neutrality repeal gains 30th co-sponsor, ensuring floor vote](http://thehill.com/policy/technology/367929-senate-bill-to-reverse-net-neutrality-repeal-wins-30th-co-sponsor-ensuring)
+
+**Bonus:** [Nebraska Introduces Law to Reinstate Net Neutrality](https://www.inverse.com/article/39994-nebraska-proposes-reinstate-net-neutrality)
+
+## Server Only Functions
+### listen - `<sys/socket.h>`
+- Set a socket to passively await a connection.
+- Needed for stream sockets.
+- Does not block.
+#### listen(socket descriptor, backlog)
+- socket descriptor
+	- return value of socket
+- backlog
+	- number of connections that can be queued up
+	- depending on the protocol, this may not do much
+
+### accept - `<sys/socket.h>`
+- Accept the next client in the queue of a socket in the listen state.
+- Used for stream sockets.
+- Performs the server side of the 3 way handshake.
+- Creates a new socket for communicating with the client, the listening socket is not modified.
+- Returns a descriptor to the new socket.
+#### `accept(socket descriptor, address, address length)`
+- socket descriptor
+	- descriptor for listening socket
+- address
+	- pointer to a `struct sockaddr_storage` that will contain information about the new socket after accept succeeds
+- address length
+	- pointer to the variable that will contain the size of the new socket address after accept succeeds
+
+Using listen and accept:
+```c
+//create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM, 0);
+
+//use getaddrinfo and bind
+
+listen(sd, 10);
+
+int client_socket;
+socklen_t sock_size;
+struct sockaddr_storage client_address;
+
+client_socket = accept(sd, (struct sockaddr *)&client_address, &sock_size);
+```
+
+## Client Only Functions
+### connect - `<sys/socket.h>`, `<sys/types.h>`
+- Connect to a socket currently in the listening state.
+- Used for stream sockets.
+- Performs the client side of the 3 way handshake.
+- Binds the socket to an address and port.
+- Blocks until a connection is made (or fails).
+
+#### `connect(socket descriptor, address, address length)`
+- address
+	- pointer to a `struct sockaddr` representing the address
+- address length
+	- size of the address, in bytes
+- address and address length can be retrieved from `getaddrinfo()`
+- Notice that the arguments mirror those of `bind()`.
+
+Using connect:
+```c
+//create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM, 0);
+
+struct addrinfo * hints, * results;
+// use getaddrinfo (not shown)
+
+connect(sd, results->ai_addr, results->ai_addrlen);
+```
+
+---
+## Friday, 1/5 Stop. Collaborate, and listen by Mansour Elsharawy
+
+**Tech News:** [Spectre and Meltdown Security Bugs Discovered Simultaneously in our Processor Chips](https://www.wired.com/story/meltdown-spectre-bug-collision-intel-chip-flaw-discovery/)
+
+_Finally, how to do networking in C!_
+
+#### Extra Libraries That You Haven't Seen Before But Will Need Now
+```
+<sys/socket.h>
+<netdb.h>
+```
+
+### socket()
+* Creates a socket!
+* Returns a socket descriptor (an `int` that works like a file descriptor)
+* Syntax: `socket(DOMAIN,TYPE,PROTOCOL)`
+* DOMAIN is the type of address to be used, use `AF_INET` or `AF_INET6` for IPv4 and IPv6 addresses, respectively.
+* TYPE is the type of socket you plan to use, use `SOCK_STREAM` for stream socket and `SOCK_DGRAM` for datagram socket.
+* PROTOCOL is the combination of domain and type - If set to 0, the OS will set it to the correct type (TCP or UDP) (Best to just set it to 0)
+
+**Example:**
+```c
+int sd = socket(AF_INET,SOCK_STREAM,0);
+```
+
+### struct addrinfo
+
+The system library uses `struct addrinfo` to represent network address information (like the IP address, port, and protocol)
+Here are some of the fields we will need to use and the values we can set them to:
+
+#### .ai_family
+* `AF_INET` for an IPv4 address
+* `AF_INET6` for an IPv6 address
+* `AF_UNSPEC` for an unspecified type of address
+
+#### .ai_socktype
+* `SOCK_STREAM` as specified above
+* `SOCK_DGRAM` as specified above
+
+#### .ai_flags
+* `AI_PASSIVE` Automatically sets to any incoming IP address (good for servers!)
+
+#### .ai_flags
+* A pointer to a `struct sockaddr,` which contains the IP address
+
+#### .ai_addrlen
+* Size of the IP address
+
+
+### getaddrinfo()
+* This method is used to lookup information about the desired network address and get one or more matching `struct addrinfo` entries.
+* Syntax: `getaddrinfo(NODE,SERVICE,HINTS,RESULTS)`
+* NODE is a string containing IP address or hostname to lookup - If set to `NULL`, it will use the loopback address.
+* SERVICE is a string with a port number or service name (if the service is in `/etc/services`) (And yes, the port number is in a string.)
+* HINTS is a pointer to a `struct addrinfo` used to provide the settings for the lookup.
+* RESULTS is a pointer toa `struct addrinfo` that will be a linked list containing entries for each matching address (memory allocation handled automagically!).
+
+### bind() (used by servers only)
+* Binds a socket to an address and port
+* Returns 0 on success, -1 on failure (and sets our good old friend errno)
+* Syntax: `bind(SOCKET_DESCRIPTOR,ADDRESS,ADDRESS_LENGTH)`
+* `SOCKET_DESCRIPTOR` is the return value of `socket()`
+* The `ADDRESS` and `ADDRESS_LENGTH` fields can be retrieved from the results of `getaddrinfo().`
+
+### listen() (used by servers only)
+* Set a socket to passively wait for a connection.
+* Necessary for stream sockets
+* DOES NOT BLOCK! THIS IS NOT READ()!
+* Syntax: `listen(SOCKET_DESCRIPTOR,BACKLOG)`
+* `BACKLOG` is the maximum number of connections that can be queued up at a time (may not do much depending on protocol)
+
+...And that's all folks! (For now)
+
+---
+
 ## Wednesday, 1/3 Socket to Me by Sonal Parab
 
 **Tech News:** [Amazon Patents Blended Reality Mirror for Virtual Dress-Up](https://www.geekwire.com/2018/amazon-patents-blended-reality-mirror-shows-wearing-virtual-clothes-virtual-locales/)
