@@ -1,3 +1,61 @@
+## Monday - January 08 | Stop. Collaborate and listen by James Smith
+
+**Interesting tech news:** [SpaceX successfully sends secret 'Zuma' satellite to space](https://www.cnet.com/news/spacex-zuma-falcon-9-heavy-cape-canaveral-elon-musk/)
+
+### accept (server only) `<sys/socket.h>`
+* Accept the next client in the queue of a socket in the listen state.     
+* Used for stream sockets.
+* Perform the server side of the 3 way handshake
+* Creates a new socket for communicating with the child, the listening
+* Socket is not modified
+* Returns a descriptor to the new socket
+* Blocks until a connection attempt is made
+* `accept(socket descriptor, address, address length)`
+	* socket descriptor: Descriptor for the listening socket
+	* address: Pointer to a struct sockaddr_storage that will contain information about the new socket after accept succeeds.
+
+	* address length: Pointer to a variable that will contain the size of the new socket address after accept succeeds
+
+**Using listen and accept**
+```C
+      // create socket
+      int sd;
+      sd = socket(_AF, SOCK_STREAM, 0};
+
+      // use getaafirno
+      listen(sd, 10);
+
+      int client_socket;
+      socklen_t sock_size;
+      struct sockaddr_storage client_address;
+
+      client_socket = accept(sd, (struct sockaddr *)&client_address, &sock_size);
+```
+### connect (client only) `<sys/socket.h> <sys/types.h>`
+* Connect to a socket currently in the listening state.
+* Used for stream sockets
+* Performs the client side of the 3 way handshake
+* Binds the socket to an address and port
+* Blocks until a connection is made (or fails)
+* `connect(socket descriptor, address, address length)`
+	* socket descriptor: descriptor for the socket		   
+	* address: Pointer to a struct sockaddr representing the address
+	* address length: size of the address, in bytes
+	* address and address length can be retrieved from getaddrinfo()
+
+**Using connect** 
+```C
+      // create socket
+      int sd;
+      sd = socket(AF_INET, SOCK_STREAM, 0);
+
+      struct addrinfo * hints, * results;
+      // use getaddrinfo (not shown)
+
+      connect(sd, results->ai_addr, results->ai_addrlen);
+```
+---
+
 ## Friday - January 05 | Stop. Collaborate and listen by Kyle Lin
 
 **Interesting tech news:** [Intel, ARM and AMD chip scare: What you need to know](http://www.bbc.com/news/technology-42562303)
