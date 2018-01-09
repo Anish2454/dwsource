@@ -1,3 +1,81 @@
+## Monday, 1/8 Stop, Collaborate, and Listen by Daria Shifrina
+**Tech news** [Physicists build muscle for shape-changing, cell-sized robots](https://www.sciencedaily.com/releases/2018/01/180103160115.htm)
+
+We continued learning about how to create sockets.
+
+* #### listen(server only) <sys/socket.h>
+  ```listen(socket_descriptor, backlog);```
+
+   * Socket descriptor: return value of socket
+   * Backlog: number of connections that can be queued up 
+	*Depending on the protocol this may not do much
+
+listen uses:
+* Set a socket to passively await a connection. 
+* Needed for stream sockets. 
+* Does not block.
+
+* #### accept (server only) <sys/socket.h>
+
+  ```accept (socket descriptor, address, address length);```
+
+	* Socket descriptor: the listening socket descriptor
+	* Address and address length intended for new socket
+	  *Pointers that will be modified by accept
+	  *Address: pointer to a struct sockaddr_storage that will contain information about the new socket after accept succeeds.
+	  *Address length
+	   *Pointer to a variable that will contain the size of the new socket address after accept succeeds
+
+accept uses:
+* Accept the next client in the queue of a socket in the listen state.
+* Used for stream sockets
+* Performs the server side of the 3 way handshake 
+* Creates a new socket for communicating with the client, the listening socket is not modified (like WKP)
+* Returns a descriptor to the new socket
+* Blocks until a connection attempt is made
+
+### Sample usage with listen and accept
+```C
+// create socket
+Int sd; 
+sd = socket(AD_INET, SOCK_STREAM, 0);
+//use getaddrinfo and bind 
+listen(sd, 10);
+int client_socket; 
+socklen_t sock_size;
+struct sockaddr_storage client_address; 
+client_socket = accept(sd,(struct sockaddr*)&client_address, &soc_size);```
+
+* #### connect (client only) <sys/socket.h> <sys/types.h>
+  ```connect (socket descriptor, address, address length);```
+
+	* Socket descriptor: descriptor for the socket
+	* Address: pointer to a struct sockaddr representing the address
+	* Address length: size of the address in bytes
+	* Address and address length can be retrieved from getaddrinfo() 
+
+
+connect uses:
+* Connect to a socket that is currently in the listening state
+* Used for stream sockets
+* Performs the client side of the three way handshake
+* Binds the socket to an address and port
+* Blocks until a connection is made or the attempt fails
+
+### Sample usage of connect
+```C
+// create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM,0 );
+struct addrinfo *hints, *results;
+//use getaddrinfo( not shown)
+connect(sd, results->ai_addr, results->ai_addrlen); 	
+```
+
+
+<hr>
+
+
 ## Friday, 1/5 Stop, Collaborate, and Listen by Jeffrey Luo
 **Tech news** [65" Rollable TV Screen](https://www.theverge.com/2018/1/6/16859102/lg-display-rollable-oled-65-inch-ces-2018)
 
