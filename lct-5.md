@@ -44,7 +44,8 @@ listen(sd, 10);
 int client_socket; 
 socklen_t sock_size;
 struct sockaddr_storage client_address; 
-client_socket = accept(sd,(struct sockaddr*)&client_address, &soc_size);```
+client_socket = accept(sd,(struct sockaddr*)&client_address, &soc_size);
+```
 
 * #### connect (client only) <sys/socket.h> <sys/types.h>
   ```connect (socket descriptor, address, address length);```
