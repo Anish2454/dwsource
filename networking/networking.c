@@ -60,13 +60,15 @@ int server_setup() {
   to the client.
   =========================*/
 int server_connect(int sd) {
-  int to_client;
+  int client_socket;
   socklen_t sock_size;
-  struct sockaddr_storage client_socket;
+  struct sockaddr_storage client_address;
 
-  to_client = accept(sd, (struct sockaddr *)&client_socket, &sock_size);
+  client_socket = accept(sd, (struct sockaddr *)&client_address, &sock_size);
+  error_check(client_socket, "server accept");
 
-  return to_client;
+
+  return client_socket;
 }
 
 /*=========================
@@ -99,7 +101,7 @@ int client_setup(char * server) {
   //connect to the server
   //connect will bind the socket for us
   i = connect( sd, results->ai_addr, results->ai_addrlen );
-  error_check( 1, "client connect" );
+  error_check( i, "client connect" );
 
   free(hints);
   freeaddrinfo(results);
