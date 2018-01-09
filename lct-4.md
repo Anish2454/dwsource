@@ -1,3 +1,81 @@
+## Monday, 1/8 Stop. Collaborate, and listen by Henry Zheng
+
+**Tech News:** [Senate bill to reverse net neutrality repeal gains 30th co-sponsor, ensuring floor vote](http://thehill.com/policy/technology/367929-senate-bill-to-reverse-net-neutrality-repeal-wins-30th-co-sponsor-ensuring)
+
+**Bonus:** [Nebraska Introduces Law to Reinstate Net Neutrality](https://www.inverse.com/article/39994-nebraska-proposes-reinstate-net-neutrality)
+
+## Server Only Functions
+### listen - `<sys/socket.h>`
+- Set a socket to passively await a connection.
+- Needed for stream sockets.
+- Does not block.
+#### listen(socket descriptor, backlog)
+- socket descriptor
+	- return value of socket
+- backlog
+	- number of connections that can be queued up
+	- depending on the protocol, this may not do much
+
+### accept - `<sys/socket.h>`
+- Accept the next client in the queue of a socket in the listen state.
+- Used for stream sockets.
+- Performs the server side of the 3 way handshake.
+- Creates a new socket for communicating with the client, the listening socket is not modified.
+- Returns a descriptor to the new socket.
+#### `accept(socket descriptor, address, address length)`
+- socket descriptor
+	- descriptor for listening socket
+- address
+	- pointer to a `struct sockaddr_storage` that will contain information about the new socket after accept succeeds
+- address length
+	- pointer to the variable that will contain the size of the new socket address after accept succeeds
+
+Using listen and accept:
+```c
+//create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM, 0);
+
+//use getaddrinfo and bind
+
+listen(sd, 10);
+
+int client_socket;
+socklen_t sock_size;
+struct sockaddr_storage client_address;
+
+client_socket = accept(sd, (struct sockaddr *)&client_address, &sock_size);
+```
+
+## Client Only Functions
+### connect - `<sys/socket.h>`, `<sys/types.h>`
+- Connect to a socket currently in the listening state.
+- Used for stream sockets.
+- Performs the client side of the 3 way handshake.
+- Binds the socket to an address and port.
+- Blocks until a connection is made (or fails).
+
+#### `connect(socket descriptor, address, address length)`
+- address
+	- pointer to a `struct sockaddr` representing the address
+- address length
+	- size of the address, in bytes
+- address and address length can be retrieved from `getaddrinfo()`
+- Notice that the arguments mirror those of `bind()`.
+
+Using connect:
+```c
+//create socket
+int sd;
+sd = socket(AF_INET, SOCK_STREAM, 0);
+
+struct addrinfo * hints, * results;
+// use getaddrinfo (not shown)
+
+connect(sd, results->ai_addr, results->ai_addrlen);
+```
+
+---
 ## Friday, 1/5 Stop. Collaborate, and listen by Mansour Elsharawy
 
 **Tech News:** [Spectre and Meltdown Security Bugs Discovered Simultaneously in our Processor Chips](https://www.wired.com/story/meltdown-spectre-bug-collision-intel-chip-flaw-discovery/)
