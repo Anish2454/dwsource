@@ -2,18 +2,18 @@
 
 ## Files
 * netowrking.h/.c
- * Code to set up socket connections for both server and client programs.
+  * Code to set up socket connections for both server and client programs.
 * client.c
- * Basic netowork client.
+  * Basic netowork client.
 * forking_server.c
- * Network based forking server.
+  * Network based forking server.
 * select_server.c
- * Forking server code with example `select()` useage.
+  * Forking server code with example `select()` useage.
 * select_client.c
- * Basic client code with example `select()` usage.
+  * Basic client code with example `select()` usage.
 * makefile
- * make: Creates forking server/client programs.
- * make select: Creates select server/client programs.
+  * make: Creates forking server/client programs.
+  * make select: Creates select server/client programs.
 
 ## For a good overall review of sockets try [Beej's Guide to Network Programming](http://beej.us/guide/bgnet/html/single/bgnet.html)
 
