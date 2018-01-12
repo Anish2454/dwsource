@@ -1,6 +1,46 @@
-## Monday, 1/8 Stop. Collaborate, and listen by Henry Zheng
+## Thursday, 1/11: Cisco in an hour by Yedoh Kang
 
 **Tech News:** [Senate bill to reverse net neutrality repeal gains 30th co-sponsor, ensuring floor vote](http://thehill.com/policy/technology/367929-senate-bill-to-reverse-net-neutrality-repeal-wins-30th-co-sponsor-ensuring)
+
+### Layer Models of Networking
+- Due to the complexity of network communications, the topic is often conceptualized into distinct layers so people can work on specific components rather than everything at once
+- The bottom layer is the most concrete, with each subsequent layer becoming more abstract (relying less on the physical connections and more on code)
+- There are various competing models, including the OSI (Open Systems Interconnections) and TCP/IP Models
+- TCP/IP Model Layers
+	1. Application
+	2. Transport
+	3. Internet
+	4. Link
+	
+### Link Layer
+- point to point transmission between devices on the same (local) network
+- combines physically connecting computers with basic addressing and transmission protocols
+- physical connection
+	* how to transmit bits between two computers
+- a brief history of physical connections
+	* Thicknet
+		- a single coaxial cable runs along the network
+		- "vampire taps" cut into the cable and connect to a computer
+	* Thinnet
+		- a single coaxial cable runs along the network (thinner)
+		- T-Connectors connect computers to the main cable
+	* Thin/Thicknet network topology
+		- connection more lost each time a computer is added
+	* Token Ring
+		- each computer is connected in a ring to each other
+		- only one computer has command of network resources at a time. This is called "having the token".
+		- the network sends a "token" throughout the ring, which contains the identity of the ocmputer allowed to use the network. All other computers must wait to use the network.
+	* Ethernet
+		- multiple computers connect to a single hub or switch
+		- Hub
+			* broadcasts the data to all the computers
+		- Switch
+			* sends data to a specific computer
+---
+
+## Monday, 1/8 Stop. Collaborate, and listen by Henry Zheng
+
+**Tech News:** [Best of CES 2018 Winners](https://www.engadget.com/2018/01/11/best-of-ces-2018-winners/)
 
 **Bonus:** [Nebraska Introduces Law to Reinstate Net Neutrality](https://www.inverse.com/article/39994-nebraska-proposes-reinstate-net-neutrality)
 
