@@ -1,3 +1,35 @@
+## Friday - January 12 | Cisco in an Hour :tm: by Gabi Newman
+**Interesting tech news:** insert tech news here
+
+#### The Link Layer (continued)
+-In order for data to be sent between computers:
+    - Each computer needs a unique address (called a **MAC Address**)
+    - The data needs to be sent in a standardized format (**Frames**)
+- MAC (Media Access Control) addresses are used by a switch/hub to distinguish between the different computers on a local network
+  - They are 6 byte addresses, usually expressed in hex (eg. `2a:00:1e:b9:70:f6`)
+  - MAC addresses only need to be unique on the same local network
+- Ethernet frames allow for data to be sent in a standard format
+  - Each frame has the following structure:
+  ```
+  prefix dest source type data checksum
+  8B     6B   6B     2B        4B
+
+  ```
+  - The **prefix** signals the start of a new frame and is always `10101010` 7 times, followed by `10101011` (for a total of 8 bytes)
+  - **dest** and **source** are the MAC addresses of the destination machine, and the source machine, respectively
+  - **data** is the data being transmitted, and has a maximum size of 1500 bytes (if the data being transmitted exceeds the maximum, it will be split into multiple frames)
+  - The **checksum** ensures data integrity and is a value computed by hashing the preceding portion of the frame, which can be verified by the destination computer
+
+#### The Internet Layer
+- Deals with the transmission of data between two seperate networks
+- Major features of this layer are addressing and routing
+- **Routers** are physical devices used to connect different local networks
+- Internet layer traffic ignores the specifics of link layer traffic
+- Instead of frames, it uses IP packets (more on IP packets on Monday)
+  
+
+---
+
 ## Thursday - January 11 | Cisco in an Hour :tm: by Khinshan Khan
 
 **Interesting tech news:** [Ninth Circuit Doubles Down: Violating a Website’s Terms of Service Is Not a Crime](https://www.eff.org/deeplinks/2018/01/ninth-circuit-doubles-down-violating-websites-terms-service-not-crime)
