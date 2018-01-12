@@ -1,4 +1,4 @@
-## Friday - January 12 | Cisco in an Hour :tm: by Gabi Newman
+## Friday - January 12 | Cisco in an Hour :tm: 2: Electric Boogaloo by Gabi Newman
 **Interesting tech news:** insert tech news here
 
 #### The Link Layer (continued)
@@ -13,7 +13,6 @@
   ```
   prefix dest source type data checksum
   8B     6B   6B     2B        4B
-
   ```
   - The **prefix** signals the start of a new frame and is always `10101010` 7 times, followed by `10101011` (for a total of 8 bytes)
   - **dest** and **source** are the MAC addresses of the destination machine, and the source machine, respectively
@@ -25,7 +24,7 @@
 - Major features of this layer are addressing and routing
 - **Routers** are physical devices used to connect different local networks
 - Internet layer traffic ignores the specifics of link layer traffic
-- Instead of frames, it uses IP packets (more on IP packets on Monday)
+- Instead of frames, it uses **IP packets** (more on IP packets on Monday)
   
 
 ---
