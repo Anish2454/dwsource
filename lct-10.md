@@ -1,3 +1,50 @@
+## Thursday - January 11 | Cisco in an Hour :tm: by Khinshan Khan
+
+**Interesting tech news:** [Ninth Circuit Doubles Down: Violating a Website’s Terms of Service Is Not a Crime](https://www.eff.org/deeplinks/2018/01/ninth-circuit-doubles-down-violating-websites-terms-service-not-crime)
+
+#### Layer models of networking
+- Due to complexity of network commumications the topic is often 
+  conceptualized into distinct layers so ppl can work on specific 
+  components rather than everything at once
+- the bottom is the most concrete, with each subsequent layer becoming more
+  abstract (relying less on physical connections and more on code)
+- There are various competing models including the OSI (Open Systems 
+  Interconnections) and the TCP/IP Models.
+  - OSI has 7 layers and TCP/IP has 4
+
+#### TCP/IP Model Layers
+ 1. Application
+ 2. Transport
+ 3. Internet
+ 4. Link
+    - point-to-point transmission betwen devices on the same (local network)
+    - combines physically connecting computers with basic addressing and
+      transmission protocols
+
+  - Physical connection
+    - how to transmit bits between two computers
+      - Electrons, photons, radio waves, etc.
+  - Link Layer
+    - Thicknet
+      - A single coaxial cable runs along the network
+      - "vampire taps" cuts into the cable and connect to a computer
+    - Thinnet
+      - A single coaxial cable runs along the network
+      - T-connectors connect computers to the main cable.
+  - Token Ring (don't worry about this part too much)
+    - Each computer is connected to the others in a ring
+  - Link Layer
+    - Ethernet
+      - multiple computers connect to a single hub or switch
+    - Hub
+      - broadcasts the data to all the computers	
+    - Switch
+      - sends data to a specific machine
+	
+    - Wifi routers work like hubs
+    
+---
+
 ## Monday - January 08 | Stop. Collaborate and listen by James Smith
 
 **Interesting tech news:** [SpaceX successfully sends secret 'Zuma' satellite to space](https://www.cnet.com/news/spacex-zuma-falcon-9-heavy-cape-canaveral-elon-musk/)
