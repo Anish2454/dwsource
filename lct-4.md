@@ -40,7 +40,7 @@
 
 ## Monday, 1/8 Stop. Collaborate, and listen by Henry Zheng
 
-**Tech News:** [Best of CES 2018 Winners](https://www.engadget.com/2018/01/11/best-of-ces-2018-winners/)
+-**Tech News:** [Senate bill to reverse net neutrality repeal gains 30th co-sponsor, ensuring floor vote](http://thehill.com/policy/technology/367929-senate-bill-to-reverse-net-neutrality-repeal-wins-30th-co-sponsor-ensuring)
 
 **Bonus:** [Nebraska Introduces Law to Reinstate Net Neutrality](https://www.inverse.com/article/39994-nebraska-proposes-reinstate-net-neutrality)
 
