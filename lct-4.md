@@ -1,6 +1,6 @@
 ## Thursday, 1/11: Cisco in an hour by Yedoh Kang
 
-**Tech News:** [Senate bill to reverse net neutrality repeal gains 30th co-sponsor, ensuring floor vote](http://thehill.com/policy/technology/367929-senate-bill-to-reverse-net-neutrality-repeal-wins-30th-co-sponsor-ensuring)
+**Tech News:** [Best of CES 2018 Winners](https://www.engadget.com/2018/01/11/best-of-ces-2018-winners/)
 
 ### Layer Models of Networking
 - Due to the complexity of network communications, the topic is often conceptualized into distinct layers so people can work on specific components rather than everything at once
