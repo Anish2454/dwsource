@@ -1,3 +1,81 @@
+## Thursday, 01/13 and Friday, 01/14: "Cisco in an Hour<sup>TM</sup>" by Jeffrey Lin
+
+**Interesting Tech News:** [Skype's rolling out end-to-end encryption for hundreds of millions of people][01140]
+
+Due to the complexity of network communications, the topic is often
+conceptualized into distinct layers so that people can work on specific
+components rather than everything at once. The bottom layer is the most
+concrete, with each subsequent layer becoming more abstract. There are various
+competing models, including [Open Systems Interconnection (OSI)][01141] and
+[TCP/IP][01142].
+
+TCP/IP has four model layers: application, transport, Internet, and link.
+
+The link layer handles point to point transmission between devices on the same
+local network. It combines physically connecting computers with basic
+addressing and transmission protocols. A "physical connection" simply describes
+how bits are transmitted between two computers (e.g. light waves, electrical
+currents). A brief history of physical connections follows below:
+
+| Connection          | Description                                                                                                                         |
+| ------------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+| [Thicknet][01143]   | A single coaxial cable runs along the network. "Vampire taps" cut into the cable and connect to a computer.                         |
+| [Thinnet][01144]    | A single coaxial cable runs along the network. T-connectors connect computers to the main cable.                                    |
+| [Token Ring][01145] | Uses a "token" that travels around a "ring" of workstations or servers to provides fair access to all stations. Patented by IBM.    |
+| [Ethernet][01146]   | Multiple computers connect to a single hub/switch. Hub broadcasts data to all computers. Switches send data to a specific computer. |
+
+In order for data to be sent between computers, each computer needs a [Medium
+Access Control (MAC)][01147] address. The data also needs to be sent in a standardized
+format (frames).
+
+MAC addresses are six-bytes long. A valid MAC address is `2a:00:1e:b9:70:f6`.
+Unlike IP addresses, which must be unique within the realm of the entire
+Internet, MAC addresses only need to be unique on a given local network. As
+such, they are often assigned to networking devices when manufactured.
+
+Each [Ethernet frame][01148] has the following format:
+
+| Field       | Bytes    | Description                                    |
+| ----------: | :------: | ---------------------------------------------- |
+| Prefix      | 8        | 7 bytes of `10101010` followed by `10101011`.  |
+| Destination | 6        | The MAC address of the frame's destination.    |
+| Source      | 6        | The MAC address of the frame's source.         |
+| Type        | 2        |                                                |
+| Data        | Variable | Maximum Transmission Unit (MTU) of 1500 bytes. |
+| Checksum    | 4        | Ensures the integrity of data.                 |
+
+The [Internet layer][01149] manages transmission of data between two separate
+networks. Internet layer traffic ignores the specifics of link-layer traffic.
+The major features in this layer are addressing and routing. [Routers][011410]
+are physical devices used to connect different local networks.
+
+IP packets contain data sent over the Internet layer. Each IPv4 packet has the
+following [header][011411]:
+
+| Field           | Bytes   | Description                                                                                                                      |
+| --------------: | :-----: | -------------------------------------------------------------------------------------------------------------------------------- |
+| Type            | 2       | Specifies IPv4 or IPv6, and the length of the header.                                                                            |
+| Size            | 2       | The total size of the packet.                                                                                                    |
+| Fragment info   | 4       | Payloads may be broken into multiple fragments. Each packet contains the number of fragments and its individual fragment number. |
+| TTL             | 1       | The time to live, in terms of number of hops.                                                                                    | 
+| Protocol        | 1       | The protocol of the data in the packet.                                                                                          |
+| Header checksum | 2       | Ensures that the packet is not mangled as it is sent through the network.                                                        |
+
+[01140]: https://web.archive.org/web/20180114013332/https://www.wired.com/story/skype-end-to-end-encryption-voice-text/
+[01141]: https://en.wikipedia.org/wiki/Open_Systems_Interconnection
+[01142]: https://en.wikipedia.org/wiki/Internet_protocol_suite
+[01143]: https://en.wikipedia.org/wiki/10BASE5
+[01144]: https://en.wikipedia.org/wiki/10BASE2
+[01145]: https://en.wikipedia.org/wiki/Token_ring
+[01146]: https://en.wikipedia.org/wiki/Ethernet
+[01147]: https://en.wikipedia.org/wiki/Medium_Access_Control
+[01148]: https://en.wikipedia.org/wiki/Ethernet_frame
+[01149]: https://en.wikipedia.org/wiki/Internet_layer
+[011410]: https://en.wikipedia.org/wiki/Router_(computing)
+[011411]: https://en.wikipedia.org/wiki/IPv4#Header
+
+--------------------------------------------------------------------------------
+
 ## Monday, 1/8 Stop, Collaborate, and Listen by Daria Shifrina
 **Tech news** [Physicists build muscle for shape-changing, cell-sized robots](https://www.sciencedaily.com/releases/2018/01/180103160115.htm)
 
