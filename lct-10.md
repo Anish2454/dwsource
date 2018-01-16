@@ -1,5 +1,5 @@
 ## Friday - January 12 | Cisco in an Hour :tm: 2: Electric Boogaloo by Gabi Newman
-**Interesting tech news:** insert tech news here
+**Interesting tech news:** [Big Bets on A.I. Open a New Frontier for Chip Start-Ups, Too](https://nyti.ms/2FDQpJ5)
 
 #### The Link Layer (continued)
 -In order for data to be sent between computers:
