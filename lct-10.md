@@ -1,3 +1,36 @@
+## Tuesday - January 16 | Cisco in an Hour:tm: 3: In 3 - D by Naotaka Kinoshita
+**Interesting tech news:** [Barcelona abandons Windows and Office, goes with Linux instead](http://www.techradar.com/news/barcelona-abandons-windows-and-office-goes-with-linux-instead)
+
+#### The Internet Layer (continued)
+- IP Packets
+	- Data sent over the internet layer is formatted into IP packets.
+		- IPv4 packet header
+			```
+			type | size | fragment info | ttl | protocol | header checksum
+			 2B  |  2B  |      4B       | 1B  |    1B    |       2B
+			```
+			- `type`: IPv4 / v6, length of header
+			- `size`: total size of the packet
+			- `fragment info`: full payloads may be broken into multiple fragments. Each packet will count the number of fragments and its individual fragment number. 
+			- `ttl` (time-to-live): Maximum number of hops a packet can make before reaching its destination.
+			- `protocol`: TCP / UDP …
+			- `header checksum`: only a checksum of the header, not the full packet.
+
+		- IPv4 Packet format
+			```
+			header | source | destination | data
+			  2B   |   2B   |     4B      | 
+			```
+			- `source` & `destination`: IPv4 addresses
+			- `data`: MTU is 65,535 bytes
+- Routing
+	- Routers may break IPv4 packets into fragments.
+	- When a router receives a packet, it has 2 options:
+		1. Send that packet to the attached local network
+		2. Forward that packet to a different router
+
+---
+
 ## Friday - January 12 | Cisco in an Hour :tm: 2: Electric Boogaloo by Gabi Newman
 **Interesting tech news:** [Big Bets on A.I. Open a New Frontier for Chip Start-Ups, Too](https://nyti.ms/2FDQpJ5)
 
