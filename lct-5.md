@@ -1,3 +1,65 @@
+## Tuesday, 01/16: "Cisco in an Hour<sup>TM</sup> 3: In 3D" by Md Abedin
+
+**Interesting Tech News:** [SpaceX will soon be launcing "the most powerful operational rocket in the world by a factor of two"](https://www.digitaltrends.com/cool-tech/spacex-falcon-heavy-engine-test/)
+
+All data sent over the internet is packaged into IP packets. There are IPv4 and IPv6 versions of IP packets:
+
+### Internet Layer:
+
+### IPv4 Packet
+	
+  header | source | destination | data 
+  --- | --- | --- | --- 
+  12B | 4B | 4B | Based on what you send 
+  
+  - *header:* contains info about packet
+  - *source and destination:* IPv4 Addresses for source and destination of data
+  - *data:* MTU = 65,536 bytes: data will be fragmented if data it's larger than this
+
+### IPv4 Packet Header
+
+  type | size | fragment info | ttl | protocol | header checksum
+  --- | --- | --- | --- | --- | ---
+  2B | 2B | 4B | 1B | 1B | 2B 
+  
+  - *type:* IPv4 / v6, length of header
+  - *size:* total size of packet
+  - *fragment info:* full payloads may be broken into multiple fragments. each packet will count the number of fragments and its individual fragment number
+  - *ttl:* (time to live): max number of hops a packet can make before reaching its destination
+  - *protocol:* TCP/UDP
+  - *header checksum:* only a checksum of the header, not the full packet
+
+Differences Between IPv4 and IPv6
+
+blob | IPv4 | IPv6
+--- | --- | ---
+Address Space | 2^32 | 2^128 
+Packet Format | Header has checksum and fragment info | Headers have no checksum/fragment info
+MTU | MTU of 65,536 | MTU of 2^32, called a jumbogram
+Fragmenting | Fragments | Does not fragment
+
+### Routing
+- Routers may break IPv4 packets into fragments
+- When a router receives a packet, it has 2 options:
+- 1. Send the packet to the attached local network
+- 2. Forward the packet to a different router. 
+
+Traceroute is a utility to track where packets are going, and the path they take
+
+`$traceroute homer.stuy.edu`
+1. Packet first goes to 192.168.1.1, the local router 
+2. Packet then goes to 149.89.150.100, homer.stuy.edu 
+
+NOTE: no switches listed, as switches are not on the internet layer.
+
+`$route -n`
+- This command line tool will show what gateway a router will send a given IP to, prints a routing table 
+- The IP 0.0.0.0 means any IP address (not already listed) 
+- The IP 149.89.0.0 means any IP that starts with 149.89, thus any IP on the stuy local network
+- A gateway of 0.0.0.0 means not leaving the local network
+
+--------------------------------------------------------------------------------
+
 ## Thursday, 01/13 and Friday, 01/14: "Cisco in an Hour<sup>TM</sup>" by Jeffrey Lin
 
 **Interesting Tech News:** [Skype's rolling out end-to-end encryption for hundreds of millions of people][01140]
