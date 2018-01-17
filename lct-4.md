@@ -1,3 +1,46 @@
+
+
+## Tuesday, 1/16: Cisco in an hour 3: In 3-D
+**Tech Newsss:** [39 Million Americans Now Own a Smart Speaker](https://www.theverge.com/2018/1/15/16892254/smart-speaker-ownership-google-amazon)
+
+IP Packets; Data sent over the internet layer is formatted into IP packets.
+
+### IPv4 packet header:
+
+| type | size | fragment info | ttl | protocol | header checksum |
+|------|------|---------------|-----|----------|-----------------|
+| 2B   | 2B   | 4B            | 1B  | 1B       | 2B              |
+*`size`= size of packet (duh)
+* `fragment info` = full payloads may be broken into multiple fragments. Each packet will count the number of fragments and it's indiivdual fragment number.
+..* TCP looks at fragment info really carefully and makes sure they are delivered in order and  no packets are dropped.
+
+* `ttl` = time to live = number of hops before packet is dropped.
+..* Switches or hubs are not hops
+
+### IPv4 packet format:
+
+| header | source | destination | data  |
+|--------|--------|-------------|-------|
+| 12B    | 4B     | 4B          | <65KB |
+
+MTU = 65KB, any time you transfer larger than that = fragmented.
+
+* routers fragment packages if necessary, otherwise keep them together
+* `traceroute` uses ttl, increasing it one at a time, to effectively trace the route that yyour packet takes to get to it's destination.
+
+
+### IPv6 differences:
+
+Packet format
+In addition to address size change, IPv6 packet headers have less information.
+
+
+* Packet format.. have less information, no checksum
+
+* MTU = 2^32 (jumbograms)
+* More work on link layer devices 
+* IpV6 has no checksum uilt into the header, write your own darnit
+---
 ## Thursday, 1/11: Cisco in an hour by Yedoh Kang
 
 **Tech News:** [Best of CES 2018 Winners](https://www.engadget.com/2018/01/11/best-of-ces-2018-winners/)
