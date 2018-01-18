@@ -1,3 +1,34 @@
+## Wednesday - January 17 | Cisco in an Hour:tm: 4: A New Hope by Jake Zaia
+(woah this is the last last class today)
+**Interesting tech news:** [The North American Bitcoin Conference is No Longer Accepting Bitcoin Payments for Tickets](https://slate.com/technology/2018/01/the-most-important-blockchain-conference-of-the-year-wont-take-bitcoin-for-last-minute-sales.html)
+
+#### IPv4/IPv6 differences
++ Address Space:
+  23^2 vs 2^128
++ Packet format:
+  IPv6 packet headers have less information. They do not include a checksum or fragment information.
++ MTU (Maximum Transmission Units):
+  IPv6 can allot for an MTU of 2^16 bytes - these are called jumbograms
++ IPv6 puts more work into Link layer devices and individual hosts
++ IPv6 does not fragment packets at all, relying on other devices to potentially take advantage of jumbograms
++ IPv6 has no checksum, assuming Link layer devices and hosts will check for data integrity if needed
+
+#### The Transport Layer
+  + Computer to computer connections over a network
+  + Not concerned with the individual hops of the Internet Layer
+  + Handles network ports (the 5000 in 127.0.0.1:5000)
+  + Uses TCP and UDP as protocols
+
+#### The Application Layer
+  + Everything else not in the below layers
+  + The OSI system counts this as 3 separate layers
+
+#### Moving between and across layers
+Encapsulation: As information moves down layers, info must be added to satisfy the requirements for the layer.
+Decapsulation: As information moves up layers, info is discarded, as it's not needed.
+
+---
+
 ## Tuesday - January 16 | Cisco in an Hour:tm: 3: In 3 - D by Naotaka Kinoshita
 **Interesting tech news:** [Barcelona abandons Windows and Office, goes with Linux instead](http://www.techradar.com/news/barcelona-abandons-windows-and-office-goes-with-linux-instead)
 
@@ -11,7 +42,7 @@
 			```
 			- `type`: IPv4 / v6, length of header
 			- `size`: total size of the packet
-			- `fragment info`: full payloads may be broken into multiple fragments. Each packet will count the number of fragments and its individual fragment number. 
+			- `fragment info`: full payloads may be broken into multiple fragments. Each packet will count the number of fragments and its individual fragment number.
 			- `ttl` (time-to-live): Maximum number of hops a packet can make before reaching its destination.
 			- `protocol`: TCP / UDP …
 			- `header checksum`: only a checksum of the header, not the full packet.
@@ -19,7 +50,7 @@
 		- IPv4 Packet format
 			```
 			header | source | destination | data
-			  2B   |   2B   |     4B      | 
+			  2B   |   2B   |     4B      |
 			```
 			- `source` & `destination`: IPv4 addresses
 			- `data`: MTU is 65,535 bytes
@@ -58,7 +89,7 @@
 - **Routers** are physical devices used to connect different local networks
 - Internet layer traffic ignores the specifics of link layer traffic
 - Instead of frames, it uses **IP packets** (more on IP packets on Monday)
-  
+
 
 ---
 
@@ -67,12 +98,12 @@
 **Interesting tech news:** [Ninth Circuit Doubles Down: Violating a Website’s Terms of Service Is Not a Crime](https://www.eff.org/deeplinks/2018/01/ninth-circuit-doubles-down-violating-websites-terms-service-not-crime)
 
 #### Layer models of networking
-- Due to complexity of network commumications the topic is often 
-  conceptualized into distinct layers so ppl can work on specific 
+- Due to complexity of network commumications the topic is often
+  conceptualized into distinct layers so ppl can work on specific
   components rather than everything at once
 - the bottom is the most concrete, with each subsequent layer becoming more
   abstract (relying less on physical connections and more on code)
-- There are various competing models including the OSI (Open Systems 
+- There are various competing models including the OSI (Open Systems
   Interconnections) and the TCP/IP Models.
   - OSI has 7 layers and TCP/IP has 4
 
@@ -114,7 +145,7 @@
 **Interesting tech news:** [SpaceX successfully sends secret 'Zuma' satellite to space](https://www.cnet.com/news/spacex-zuma-falcon-9-heavy-cape-canaveral-elon-musk/)
 
 ### accept (server only) `<sys/socket.h>`
-* Accept the next client in the queue of a socket in the listen state.     
+* Accept the next client in the queue of a socket in the listen state.
 * Used for stream sockets.
 * Perform the server side of the 3 way handshake
 * Creates a new socket for communicating with the child, the listening
@@ -149,7 +180,7 @@
 * Binds the socket to an address and port
 * Blocks until a connection is made (or fails)
 * `connect(socket descriptor, address, address length)`
-	* socket descriptor: descriptor for the socket		   
+	* socket descriptor: descriptor for the socket
 	* address: Pointer to a struct sockaddr representing the address
 	* address length: size of the address, in bytes
 	* address and address length can be retrieved from getaddrinfo()
@@ -281,14 +312,14 @@ bind(sd, results->ai_addr, results->ai_addrles);
 
 **Interesting tech news:** [Fooling AIs with Stickers](https://www.theverge.com/2018/1/3/16844842/ai-computer-vision-trick-adversarial-patches-google)
 
-***Why haven't we switched to IPv6?***             
+***Why haven't we switched to IPv6?***
 The system for IPv4 is incompatible with IPv6. While many computers can support both IPv4 and IPv6, it's the Internet providers that prevent us from making the switch. They will have update their infrastructure, which takes both money and time. Companies like Google, who are interested in more IP addresses (more users), are urging current users to voice their concern to their providers.
 
 *Sockets are analagous to named pipes. Instead of names, they require ports.*
 ### Network Ports ###
-- If *sockets* were APARTMENT BUILDINGS,                          
-the *IP address* would be the FRONT DOOR,                               
-and the *port* would be each unique APARTMENT.                        
+- If *sockets* were APARTMENT BUILDINGS,
+the *IP address* would be the FRONT DOOR,
+and the *port* would be each unique APARTMENT.
 
 - There are 2^16 ports in your computer, or 65, 536 possible connections to programs.
 
@@ -296,25 +327,25 @@ and the *port* would be each unique APARTMENT.
 
 ###### RESERVED PORTS ######
 Ports 1024 and under are officially reserved and should not be used.
-- 80 : http                  
-- 22 : ssh                     
-- 443 : ssl                   
+- 80 : http
+- 22 : ssh
+- 443 : ssl
 - [more](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
 
 You can register your port officially with the IANA (Internet Assigned Numbers Authority).
 
 ### Network Connection Types ###
-STREAM SOCKET                     
-**TCP: Transmission Control Protocol**                
-- reliable two-way communication                 
-- must be connected on both ends                  
+STREAM SOCKET
+**TCP: Transmission Control Protocol**
+- reliable two-way communication
+- must be connected on both ends
 - data is received in the order it is sent (not as easy as it sounds)
 
-DATAGRAM SOCKET              
-**UDP: User Datagram Protocol**                
-- "connectionless"--an established connnection is not required.                
-- Data sent might be received out of order or not at all *(because data is sent in packets and may not take the same route; therefore arriving in a different order)*         
-- Advantage of being much faster because no need to package everything together                
+DATAGRAM SOCKET
+**UDP: User Datagram Protocol**
+- "connectionless"--an established connnection is not required.
+- Data sent might be received out of order or not at all *(because data is sent in packets and may not take the same route; therefore arriving in a different order)*
+- Advantage of being much faster because no need to package everything together
 - Used in games and streaming media
 
 ---
@@ -564,7 +595,7 @@ Fun Fact: it's pronounced meme so that it sounds like gene 😆
 ## Some more Shared Memory Functions ##
 ### ```shmdt(pointer)``` ###
 * Detach a variable from a shared memory segment
-* Returns 0 upon success or -1 upon failure. 
+* Returns 0 upon success or -1 upon failure.
 * Pointer: address used to access the segment
 ### ``` shmctl(descriptor, command, buffer)``` ###
 * Perform operations on the shared memory segment
@@ -587,13 +618,13 @@ To see your shared memory, you can use ```$ ipcs -m ```
 ## Shared Memory
 - `<sys/shm.h>`, `<sys/ipc.h>`, `sys/types.h`
 - Is a segment of heap memory that can be accessed by multiple processes
-- Does not get released when a program exits. 
+- Does not get released when a program exits.
 	- Thus, when you're done with a piece of shared memory, you must manually release it.
 
 ### 5 Shared memory observations
 - Create the segment (happens once)
 - Access segment (happens once per process)
-- Attach the segment to a variable (once per process) 
+- Attach the segment to a variable (once per process)
 	- ex. pointer to point to the shared memory
 - Detach segment from a variable (once per process)
 	- This doesn't change the value of the pointer, but it is detached so you don't have access to it anymore
@@ -648,11 +679,11 @@ flags
 - Used to provide preprocessor instructions.
 - These direcives are handled by `gcc` first.
 
-### #include 
+### #include
 `#include <LIBRARY> | "LIBRARY"`
 - Link libraries to your code.
 
-### #define 
+### #define
 `#define <NAME> <VALUE>`
 - Replace all occurrences of NAME with VALUE
 
@@ -954,7 +985,7 @@ int main() {
     arg[1] = "-a";
     arg[2] = "-l";
     arg[3] = NULL; // NULL Terminated
-  
+
     execvp(arg[0], arg);
 
     return 0;
