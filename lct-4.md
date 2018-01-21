@@ -1,6 +1,7 @@
 ## Wednesday, 1/17 | Cisco in an Hour 4: A New Hope by Aryan Bhatt
 
 **Tech News:** [Amazon Alexa is now a feminist!](https://work.qz.com/1180607/amazons-alexa-is-now-a-feminist-and-shes-sorry-if-that-upsets-you/)
+
 **Apology Tech News for being late:** [Sophia the robot (made by Hanson Robotics) is receiving a lot of hate in the AI community](https://www.theverge.com/2018/1/18/16904742/sophia-the-robot-ai-real-fake-yann-lecun-criticism)
 
 ### Transport Layer:
