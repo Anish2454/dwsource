@@ -25,7 +25,7 @@ Whenever data crosses from a higher layer to a lower one, layer-specific metadat
 Whenever data crosses from a lower level to a higher one, the packaging for the lower layer is removed
 
 ### The next few Cisco in an Hour lessons would have been named:
-Cisco in an hour V for Vendetta
+Cisco in an hour V for Vendetta     
 Cisco in an hour VI: The Undiscovered Country
 
 Good luck on any finals you may have and your final projects!! (we're allowed to come into school on Thursday to work)
