@@ -5,16 +5,16 @@
 **Apology Tech News for being late:** [Sophia the robot (made by Hanson Robotics) is receiving a lot of hate in the AI community](https://www.theverge.com/2018/1/18/16904742/sophia-the-robot-ai-real-fake-yann-lecun-criticism)
 
 ### Transport Layer:
-Involves the connection between computers within a network
-Unconcerned with the individual hops of layer 3 traffic
-This is the layer at which we use network ports
-Both TCP and UDP are transport layer protocols
+* Involves the connection between computers within a network
+* Unconcerned with the individual hops of layer 3 traffic
+* This is the layer at which we use network ports
+* Both TCP and UDP are transport layer protocols
 
 ### Application Layer:
 The application layer concerns the actual programs to be run
 
 ### Data Encapsulation:
-Network Layer - IP Packets
+Network Layer - IP Packets    
 Link Layer - Ethernet Frames
 
 Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added      
