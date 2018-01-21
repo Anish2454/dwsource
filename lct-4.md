@@ -11,16 +11,16 @@
 * Both TCP and UDP are transport layer protocols
 
 ### Application Layer:
-The application layer concerns the actual programs to be run
+* The application layer concerns the actual programs to be run
 
 ### Data Encapsulation:
 Network Layer - IP Packets    
 Link Layer - Ethernet Frames
 
-Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added      
-From Application -> Transport, UDP or TCP headers are added, including network port information.      
-From Transport -> Network, data (including Transport headers) is packaged into IP Packets     
-From Network -> Link, packets (including IP and Transport headers) are packaged into Ethernet Frames
+Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added-      
+* From Application -> Transport, UDP or TCP headers are added, including network port information.      
+* From Transport -> Network, data (including Transport headers) is packaged into IP Packets     
+* From Network -> Link, packets (including IP and Transport headers) are packaged into Ethernet Frames
 
 Whenever data crosses from a lower level to a higher one, the packaging for the lower layer is removed
 
