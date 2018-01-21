@@ -17,9 +17,9 @@ The application layer concerns the actual programs to be run
 Network Layer - IP Packets
 Link Layer - Ethernet Frames
 
-Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added \n
-From Application -> Transport, UDP or TCP headers are added, including network port information. \n
-From Transport -> Network, data (including Transport headers) is packaged into IP Packets \n
+Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added      
+From Application -> Transport, UDP or TCP headers are added, including network port information.      
+From Transport -> Network, data (including Transport headers) is packaged into IP Packets     
 From Network -> Link, packets (including IP and Transport headers) are packaged into Ethernet Frames
 
 Whenever data crosses from a lower level to a higher one, the packaging for the lower layer is removed
