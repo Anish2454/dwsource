@@ -1,4 +1,35 @@
+## Wednesday, 1/17 | Cisco in an Hour 4: A New Hope by Aryan Bhatt
 
+**Tech News:** [Amazon Alexa is now a feminist!](https://work.qz.com/1180607/amazons-alexa-is-now-a-feminist-and-shes-sorry-if-that-upsets-you/)
+**Apology Tech News for being late:** [Sophia the robot (made by Hanson Robotics) is receiving a lot of hate in the AI community](https://www.theverge.com/2018/1/18/16904742/sophia-the-robot-ai-real-fake-yann-lecun-criticism)
+
+### Transport Layer:
+Involves the connection between computers within a network
+Unconcerned with the individual hops of layer 3 traffic
+This is the layer at which we use network ports
+Both TCP and UDP are transport layer protocols
+
+### Application Layer:
+The application layer concerns the actual programs to be run
+
+### Data Encapsulation:
+Network Layer - IP Packets
+Link Layer - Ethernet Frames
+
+Whenever data crosses from a higher layer to a lower one, layer-specific metadata is added
+From Application -> Transport, UDP or TCP headers are added, including network port information.
+From Transport -> Network, data (including Transport headers) is packaged into IP Packets
+From Network -> Link, packets (including IP and Transport headers) are packaged into Ethernet Frames
+
+Whenever data crosses from a lower level to a higher one, the packaging for the lower layer is removed
+
+### The next few Cisco in an Hour lessons would have been named:
+Cisco in an hour V for Vendetta
+Cisco in an hour VI: The Undiscovered Country
+
+Good luck on any finals you may have and your final projects!! (we're allowed to come into school on Thursday to work)
+
+---
 
 ## Tuesday, 1/16: Cisco in an hour 3: In 3-D
 **Tech Newsss:** [39 Million Americans Now Own a Smart Speaker](https://www.theverge.com/2018/1/15/16892254/smart-speaker-ownership-google-amazon)
