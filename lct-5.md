@@ -1,3 +1,36 @@
+## Wednesday, 01/17: "Aim: Cisco in an hour IV: A New Hope" by Queenie Xiang 
+
+**Interesting Tech News:** [Wearable Android device can assess seniors’ risk of suffering a nasty fall](https://www.digitaltrends.com/cool-tech/fallskip-analyzes-for-possible-fall/)
+
+### Transport Layer:
+* Computer to computer connection over a network
+* Unconcerned with the individual hops of layer 3 traffic
+* Network ports are used at the transport layer
+* TCP and UDP are transport layer protocols
+
+### Application Layer:
+* Everything else
+* Top most layer 
+* A program that you write 
+* Assumes that you already have a computer to computer connection (transport layer connectivity) 
+* Basically the reading and writing
+
+### Data Encapsulation:
+* What happens when traffic crosses layer boundaries 
+* What happens when traffic goes from router -> switch -> computer 
+* As data crosses from an u upper layer to a lower one, layer-specific metadata is added to help and aid transmission
+	* Application -> Transport
+		* UDP or TCP headers are added, including network port information. 
+	* Transport -> Network 
+		* Data (including Transport headers) is packaged into IP Packets
+	* Network -> Link
+		* Packets (Including IP and Transport headers) are packaged into Ethernet Frames 
+
+### Data Decapsulation:
+* When data crosses back up a layer, the packaging for the lower layer is removed 
+
+--------------------------------------------------------------------------------
+
 ## Tuesday, 01/16: "Cisco in an Hour<sup>TM</sup> 3: In 3D" by Md Abedin
 
 **Interesting Tech News:** [SpaceX will soon be launcing "the most powerful operational rocket in the world by a factor of two"](https://www.digitaltrends.com/cool-tech/spacex-falcon-heavy-engine-test/)
